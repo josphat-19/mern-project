@@ -4,7 +4,7 @@ import {
   getDownloadURL, 
   getStorage, 
   ref, 
-  uploadBytesResumable 
+  uploadBytesResumable,
 } from 'firebase/storage'
 import { app } from '../firebase'
 import { 
@@ -14,7 +14,7 @@ import {
   deleteUserFailure, 
   deleteUserstart,
   deleteUserSuccess,
-  signOutUserstart
+  signOutUserstart,
 } from '../redux/user/userSlice.js'
 import { useDispatch } from 'react-redux'
 
@@ -67,7 +67,7 @@ export default function Profile() {
     e.preventDefault()
     try {
       dispatch(updateUserStart())
-      const res = await fetch('/api/user/update/${currentUser._id}', {
+      const res = await fetch(`/api/user/update/${currentUser._id}`, {
 
         method: 'POST',
         headers: {
@@ -93,7 +93,7 @@ export default function Profile() {
   const handleDeleteUser = async () => {
     try {
       dispatch(deleteUserstart())
-      const res = await fetch('/api/user/delete/${currentUser._id}',{
+      const res = await fetch(`/api/user/delete/${currentUser._id}`,{
         method: 'DELETE',
       })
       const data = await res.json()
@@ -120,7 +120,7 @@ export default function Profile() {
     } catch (error) {
       dispatch(deleteUserFailure(data.message))
     }
-  }
+  };
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 
@@ -151,7 +151,7 @@ export default function Profile() {
             <span className='text-slate-700'>
               {'uploading ${filePerc}%'}
             </span>
-          ) :filePerc === 100 ? (
+          ) : filePerc === 100 ? (
               <span className='text-green-700'>
                 Image Successfully uploaded
               </span>
@@ -178,9 +178,9 @@ export default function Profile() {
         <input 
           type='password' 
           placeholder='password' 
+          onChange={handleChange}
           id='password' 
           className='border p-3 rounded-lg' 
-          onChange={handleChange}
         />
         <button 
           disabled={loading}

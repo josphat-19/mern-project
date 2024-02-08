@@ -26,7 +26,7 @@ const initialState = {
             state.loading = true
         },
         updateUserSuccess: (state, action) => {
-            state.error = action.payload
+            state.currentUser = action.payload
             state.loading = false
             state.error = null
         },
