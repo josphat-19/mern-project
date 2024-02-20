@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate, useParams} from 'react-router-dom'
 
 export default function CreateListing() {
-  const {currentUser} = useSelector((state) => state.user)
+  const { currentUser } = useSelector((state) => state.user)
   const navigate = useNavigate()
   const params = useParams()
   const [files, setFiles] = useState([])
@@ -42,6 +42,7 @@ export default function CreateListing() {
 
     fetchListing()
   }, [])
+
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imagesUrls.length < 7){
       setUploading(true)
@@ -125,8 +126,10 @@ export default function CreateListing() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      if(formData.imagesUrls.length < 1) return setError('You must upload atleast one image')
-      if(+formData.regularPrice < +formData.discountPrice) return setError('Discount price must be lower than regular price')
+      if(formData.imagesUrls.length < 1) 
+        return setError('You must upload atleast one image')
+      if(+formData.regularPrice < +formData.discountPrice) 
+        return setError('Discount price must be lower than regular price')
       setLoading(true)
       setError(false)
       const res = await fetch(`/api/listing/update/${params.listingId}`, {
@@ -244,7 +247,7 @@ export default function CreateListing() {
                 required 
                 className='p-3 border border-gray-300 rounded-lg'
                 onChange={handleChange}
-                checked={formData.bedrooms}
+                value={formData.bedrooms}
                />
               <p>Beds</p>
             </div>  
@@ -256,7 +259,7 @@ export default function CreateListing() {
                 required 
                 className='p-3 border border-gray-300 rounded-lg'
                 onChange={handleChange}
-                checked={formData.bathrooms}
+                value={formData.bathrooms}
               />
               <p>Baths</p>
             </div>  
@@ -268,7 +271,7 @@ export default function CreateListing() {
                 required 
                 className='p-3 border border-gray-300 rounded-lg'
                 onChange={handleChange}
-                checked={formData.regularPrice}
+                value={formData.regularPrice}
               />
               <div className='flex flex-col items-center'>
                 <p>Regular price</p>
@@ -284,11 +287,13 @@ export default function CreateListing() {
                 required 
                 className='p-3 border border-gray-300 rounded-lg'
                 onChange={handleChange}
-                checked={formData.discountPrice}
+                value={formData.discountPrice}
                />
               <div className='flex flex-col items-center'>
                 <p>Discounted price</p>
+                {formData.type === 'rent' && (
                 <span className='text-xs'>($ / night)</span>
+                )}
               </div>
             </div>
             )}      
@@ -333,8 +338,8 @@ export default function CreateListing() {
               </div>
             ))
           }
-          <button disabledled={loading || uploading} className='p-3 bg-slate-700 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
-            {loading ? 'creating...' : 'Update listing'}
+          <button disabled={loading || uploading} className='p-3 bg-slate-700 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
+            {loading ? 'updating...' : 'Update listing'}
           </button>
           {error && <p className="text-red-700 text-sm">{error}</p>}
         </div>
