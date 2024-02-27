@@ -60,7 +60,7 @@ export default function Listing() {
                         <SwiperSlide key={url}>
                         <div 
                             className='h-[550px]' 
-                            style={{bacground: `url(${url}) 
+                            style={{background: `url(${url}) 
                             center no-repeat`, backgroundSize: 'cover' }}>
                         </div>
                         </SwiperSlide> 
