@@ -9,7 +9,7 @@ export default function CreateListing() {
   const navigate = useNavigate()
   const [files, setFiles] = useState([])
   const [formData, setFormData]= useState({
-    imagesUrls: [],
+    imageUrls: [],
     name: '',
     description: '',
     address: '',
@@ -28,7 +28,7 @@ export default function CreateListing() {
   const[loading, setLoading] = useState(false)
   console.log(formData)
   const handleImageSubmit = (e) => {
-    if (files.length > 0 && files.length + formData.imagesUrls.length < 7){
+    if (files.length > 0 && files.length + formData.imageUrls.length < 7){
       setUploading(true)
       setImageUploadError(false)
       const promises = []

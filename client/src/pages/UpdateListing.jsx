@@ -326,7 +326,7 @@ export default function CreateListing() {
           </div>
           <p className="text-red-700 text-sm">{imageUploadError && imageUploadError}</p>
           {
-            formData.imagesUrls.length > 0 && formData.imagesUrls.map((url, index) => (
+            formData.imagesUrls && formData.imagesUrls.length > 0 && formData.imagesUrls.map((url, index) => (
               <div 
                 key={url} 
                 className="flex justify-between p-3 border items-center">
