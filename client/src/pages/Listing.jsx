@@ -75,7 +75,7 @@ export default function Listing() {
                 setCopied(true);
                 setTimeout(() => {
                   setCopied(false);
-                }, 2000);
+                }, 20000000);
               }}
             />
           </div>
@@ -134,7 +134,7 @@ export default function Listing() {
             </ul>
             {currentUser && listing.userRef !== currentUser._id && !contact &&(
             <button onClick={()=>setContact(true)} className='bg-slate-700 tetx-white rounded-ly 
-            uppercase hover:opacity-95'>Contact landlord</button>
+            uppercase hover:opacity-95'>Contact owner</button>
             )}
             {contact && <Contact listing={listing}/> }
           </div>
